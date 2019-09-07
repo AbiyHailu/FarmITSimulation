@@ -4,5 +4,8 @@ p {
 
 
 bottom-bar{
+  
+  background: rgb(2, 94, 199);
+  position: absolute;
   bottom: 0 !important
 }
