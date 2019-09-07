@@ -3,9 +3,16 @@ p {
 }
 
 
-bottom-bar{
+top-bar, bottom-bar{
   width:100%;
   background: rgb(2, 94, 199);
-  position: absolute;
-  bottom: 0 !important
+  position: fixed;
+  
 }
+top-bar{
+  top: 0 !important
+}
+ bottom-bar{
+
+  bottom: 0 !important
+ }
