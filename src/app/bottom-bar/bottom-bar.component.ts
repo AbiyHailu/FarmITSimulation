@@ -25,12 +25,13 @@ export class BottomBarComponent implements OnInit {
       if (this.barValue > this.plantage) {
         clearInterval(this.interval)
       }
-    }, 20000);
+    }, 1000);
   }
 
   percentageBarValue = 0
   getpercentage() {
     this.percentageBarValue = this.barValue * 100 / this.plantage
+    this.createNotifications() 
   }
 
   changeProgressValue() {
