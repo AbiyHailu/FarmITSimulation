@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+ import {SharedDataService} from './services/SharedData.service';
 
 @Component({
   selector: 'bottom-bar',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BottomBarComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private sharedDataServices:SharedDataService
+  ) {
     this.getPlantAge()
   }
 
