@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedDataService} from '../services/sharedData.service';
+import { SharedDataService } from '../services/sharedData.service';
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 @Component({
@@ -17,11 +17,11 @@ export class TopBarComponent implements OnInit {
     this.sharedDataService.currentNotificationData
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        console.log("res", res)
         this.notifications.push(res)
+        console.log('this.notifications', this.notifications)
+        this.numberofNotiications = this.notifications.length
+        console.log('this.   this.numberofNotiications ', this.numberofNotiications)
       })
-    this.numberofNotiications = this.notifications.length
-    console.log('this.notifications', this.notifications)
 
   }
 

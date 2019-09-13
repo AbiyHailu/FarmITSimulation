@@ -11,15 +11,25 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   constructor(
     private sharedDataService: SharedDataService
   ) {
-   
-    this.getPlantAge()
+
+     clearInterval(this.interval)
+    this.barValue = 1
+    this.percentageBarValue = 0
   }
 
   ngOnInit() {
   }
+  start() {
+    this.getPlantAge()
+  }
+  stop() {
+    clearInterval(this.interval)
+  }
+  pause(){
+    
+  }
 
-  barValue = 1
-
+  barValue = 1  
   plantage = 90
   interval
   getPlantAge() {
@@ -29,7 +39,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
     this.interval = setInterval(() => {
       if (this.barValue) {
         this.barValue = this.barValue + 1
-        console.log(this.barValue,     this.percentageBarValue)
+        console.log(this.barValue, this.percentageBarValue)
         this.changeProgressValue(this.barValue)
         this.getpercentage(this.barValue)
         if (this.barValue > this.plantage) {
@@ -42,7 +52,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
 
   percentageBarValue = 0
   getpercentage(barValue) {
-    this.percentageBarValue = barValue* 100 / this.plantage
+    this.percentageBarValue = barValue * 100 / this.plantage
     this.createNotifications()
   }
 
@@ -57,11 +67,11 @@ export class BottomBarComponent implements OnInit, OnDestroy {
       //console.log('Notification')
       this.sharedDataService.changeNotificationData("Notification")
     }
-      if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
+    if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
       //console.log('Notification')
       this.sharedDataService.changeNotificationData("Notification")
     }
-      if (this.percentageBarValue > 15 && this.percentageBarValue < 20) {
+    if (this.percentageBarValue > 15 && this.percentageBarValue < 20) {
       //console.log('Notification')
       this.sharedDataService.changeNotificationData("Notification")
     }
@@ -69,13 +79,13 @@ export class BottomBarComponent implements OnInit, OnDestroy {
 
   createScoutReport() {
     if (this.percentageBarValue > 30 && this.percentageBarValue < 40) {
-   //   console.log('createScoutReport')
+      //   console.log('createScoutReport')
     }
   }
 
   createMessages() {
     if (this.percentageBarValue > 20 && this.percentageBarValue < 30) {
-  //    console.log('createMessages')
+      //    console.log('createMessages')
     }
   }
   ngOnDestroy() {
