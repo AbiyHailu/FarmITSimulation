@@ -55,7 +55,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   createNotifications() {
     if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
       console.log('Notification')
-      this.sharedDataService.changeData(Notification)
+      this.sharedDataService.changeNotificationData(Notification)
     }
   }
 

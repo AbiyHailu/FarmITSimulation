@@ -10,18 +10,18 @@ import { takeUntil } from "rxjs/operators";
 export class TopBarComponent implements OnInit {
   subject: Subject<void> = new Subject();
   notifications = []
-  numberofNotiications:number
+  numberofNotiications: number
   constructor(
     private sharedDataService: SharedDataService
 
-  ) { 
-    this.sharedDataService.currentNotificationData
-    .pipe(takeUntil(this.subject))
-    .subscribe(res=> {
-      console.log(res)
-      this.notifications.push(res)
-    })
-  this.numberofNotiications = this.notifications.length
+  ) {
+    this.sharedDataService.
+      .pipe(takeUntil(this.subject))
+      .subscribe(res => {
+        console.log(res)
+        this.notifications.push(res)
+      })
+    this.numberofNotiications = this.notifications.length
 
   }
 
