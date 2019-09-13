@@ -53,21 +53,29 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   }
 
   createNotifications() {
-    if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
-      console.log('Notification')
-      this.sharedDataService.changeNotificationData(Notification)
+    if (this.percentageBarValue > 5 && this.percentageBarValue < 8) {
+      //console.log('Notification')
+      this.sharedDataService.changeNotificationData("Notification")
+    }
+      if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
+      //console.log('Notification')
+      this.sharedDataService.changeNotificationData("Notification")
+    }
+      if (this.percentageBarValue > 15 && this.percentageBarValue < 20) {
+      //console.log('Notification')
+      this.sharedDataService.changeNotificationData("Notification")
     }
   }
 
   createScoutReport() {
     if (this.percentageBarValue > 30 && this.percentageBarValue < 40) {
-      console.log('createScoutReport')
+   //   console.log('createScoutReport')
     }
   }
 
   createMessages() {
     if (this.percentageBarValue > 20 && this.percentageBarValue < 30) {
-      console.log('createMessages')
+  //    console.log('createMessages')
     }
   }
   ngOnDestroy() {

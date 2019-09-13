@@ -13,15 +13,15 @@ export class TopBarComponent implements OnInit {
   numberofNotiications: number
   constructor(
     private sharedDataService: SharedDataService
-
   ) {
-    this.sharedDataService.
+    this.sharedDataService.currentNotificationData
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        console.log(res)
+        console.log("res", res)
         this.notifications.push(res)
       })
     this.numberofNotiications = this.notifications.length
+    console.log('this.notifications', this.notifications)
 
   }
 
