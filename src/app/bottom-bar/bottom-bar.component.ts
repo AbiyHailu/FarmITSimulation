@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
- import {SharedDataService} from './services/SharedData.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SharedDataService } from '../services/sharedData.service';
 
 @Component({
   selector: 'bottom-bar',
   templateUrl: './bottom-bar.component.html',
   styleUrls: ['./bottom-bar.component.css']
 })
-export class BottomBarComponent implements OnInit {
+export class BottomBarComponent implements OnInit, OnDestroy {
 
   constructor(
-    private sharedDataServices:SharedDataService
+    private sharedDataService: SharedDataService
   ) {
+   
     this.getPlantAge()
   }
 
@@ -18,27 +19,35 @@ export class BottomBarComponent implements OnInit {
   }
 
   barValue = 1
+
   plantage = 90
   interval
   getPlantAge() {
+    clearInterval(this.interval)
+    this.barValue = 1
+    this.percentageBarValue = 0
     this.interval = setInterval(() => {
-      this.barValue = this.barValue + 1
-      this.changeProgressValue()
-      this.getpercentage()
-      if (this.barValue > this.plantage) {
-        clearInterval(this.interval)
+      if (this.barValue) {
+        this.barValue = this.barValue + 1
+        console.log(this.barValue,     this.percentageBarValue)
+        this.changeProgressValue(this.barValue)
+        this.getpercentage(this.barValue)
+        if (this.barValue > this.plantage) {
+          clearInterval(this.interval)
+        }
       }
+
     }, 1000);
   }
 
   percentageBarValue = 0
-  getpercentage() {
-    this.percentageBarValue = this.barValue * 100 / this.plantage
-    this.createNotifications() 
+  getpercentage(barValue) {
+    this.percentageBarValue = barValue* 100 / this.plantage
+    this.createNotifications()
   }
 
-  changeProgressValue() {
-    if (this.barValue) {
+  changeProgressValue(barValue) {
+    if (barValue) {
       document.getElementById('progress-time').style.width = this.percentageBarValue.toString() + '%'
     }
   }
@@ -46,6 +55,7 @@ export class BottomBarComponent implements OnInit {
   createNotifications() {
     if (this.percentageBarValue > 10 && this.percentageBarValue < 12) {
       console.log('Notification')
+      this.sharedDataService.changeData(Notification)
     }
   }
 
@@ -60,7 +70,11 @@ export class BottomBarComponent implements OnInit {
       console.log('createMessages')
     }
   }
-
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
 }
 
 
